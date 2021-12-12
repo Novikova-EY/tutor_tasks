@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class Task1 {
     public static void main(String[] args) {
+        start();
+    }
+
+    private static void start() {
         ArrayList<String> planner = new ArrayList<>();
         final Scanner scanner = new Scanner(System.in);
 
