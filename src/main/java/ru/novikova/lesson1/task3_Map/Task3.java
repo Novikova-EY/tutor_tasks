@@ -23,15 +23,14 @@ public class Task3 {
             if (newInput.startsWith("LIST")) {
                 list(phoneBook);
             } else {
-                checkPhone(phoneBook, newInput);
-                checkName(phoneBook, newInput);
+                input(phoneBook, newInput);
             }
         }
     }
 
     private static void list(HashMap<String, String> phoneBook) {
         if (!phoneBook.isEmpty()) {
-            for(Map.Entry entry : phoneBook.entrySet()) {
+            for (Map.Entry entry : phoneBook.entrySet()) {
                 System.out.println(entry);
             }
         } else {
@@ -39,42 +38,63 @@ public class Task3 {
         }
     }
 
-    private static void checkPhone(HashMap<String, String> phoneBook, String newInput) {
-        String regex = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(newInput);
-        String phone = newInput;
-
-        if (m.matches()) {
-            if (!phoneBook.containsKey(phone)) {
-                Scanner scannerName = new Scanner(System.in);
-                System.out.println("Данный пользователь не зарегистрирован. Укажите его имя для внесения " +
-                        "в справочник");
-                String newInputName = scannerName.nextLine();
-                phoneBook.put(phone, newInputName);
-                System.out.println("Телефонная запись была успешно добавлена");
-            } else {
-                System.out.println("Существующая телефонная запись: Имя - " + phoneBook.get(phone));
+    private static void listExisting(HashMap<String, String> phoneBook, String newInput) {
+        for (Map.Entry entry : phoneBook.entrySet()) {
+            if (entry.getValue().equals(newInput)) {
+                System.out.println("Такая запись уже существует " + entry);
+            }
+        }
+        for (Map.Entry entry : phoneBook.entrySet()) {
+            if (entry.getKey().equals(newInput)) {
+                System.out.println("Такая запись уже существует " + entry);
             }
         }
     }
 
-    private static void checkName(HashMap<String, String> phoneBook, String newInput) {
-        String regex = "\\w+";
+    private static boolean checkPhone(String newInput) {
+        String regex = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(newInput);
-        String name = newInput;
+        return (m.matches());
+    }
 
-        if (m.matches()) {
-            if (!phoneBook.containsValue(name)) {
-                Scanner scannerPhone = new Scanner(System.in);
+    private static boolean checkName(String newInput) {
+        String regex = "\\w+||\\W+";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(newInput);
+        return (m.matches());
+    }
+
+    private static void input(HashMap<String, String> phoneBook, String newInput) {
+        if (checkPhone(newInput)) {
+            if (!phoneBook.containsKey(newInput)) {
+                System.out.println("Данный пользователь не зарегистрирован. Укажите его имя для внесения " +
+                        "в справочник");
+                Scanner scannerName = new Scanner(System.in);
+                String newInputName = scannerName.nextLine();
+                if (checkName(newInputName)) {
+                    phoneBook.put(newInput, newInputName);
+                    System.out.println("Телефонная запись была успешно добавлена");
+                } else {
+                    System.out.println("Телефонная запись не добавлена. Неккоректный ввод имени");
+                }
+            } else {
+                listExisting(phoneBook, newInput);
+            }
+        } else if (checkName(newInput)) {
+            if (!phoneBook.containsValue(newInput)) {
                 System.out.println("Данный пользователь не зарегистрирован. Укажите его номер телефона для внесения " +
                         "в справочник");
+                Scanner scannerPhone = new Scanner(System.in);
                 String newInputPhone = scannerPhone.nextLine();
-                phoneBook.put(newInputPhone, name);
-                System.out.println("Телефонная запись была успешно добавлена");
+                if (checkPhone(newInputPhone)) {
+                    phoneBook.put(newInputPhone, newInput);
+                    System.out.println("Телефонная запись была успешно добавлена");
+                } else {
+                    System.out.println("Телефонная запись не добавлена. Неккоректный ввод номера телефона");
+                }
             } else {
-                System.out.println("Существующая телефонная запись: Имя - " + phoneBook.get(name));
+                listExisting(phoneBook, newInput);
             }
         }
     }

@@ -5,12 +5,8 @@ import java.util.Scanner;
 
 public class Task1 {
     public static void main(String[] args) {
-        start();
-    }
-
-    private static void start() {
         ArrayList<String> planner = new ArrayList<>();
-        final Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Введите желаемое действие: LIST - список заданий; ADD - добавить задание; DELETE - удалить задание");
@@ -31,7 +27,7 @@ public class Task1 {
         String task = null;
         int numberOfTask = 0;
 
-        if (task.equalsIgnoreCase("LIST")) {
+        if (words[0].equalsIgnoreCase("LIST")) {
             list(planner);
         } else {
             StringBuilder taskBuilder = new StringBuilder();
@@ -47,34 +43,24 @@ public class Task1 {
             }
         }
 
-        if (task.equalsIgnoreCase("ADD")) {
+        if (words[0].equalsIgnoreCase("ADD")) {
             add(planner, task, numberOfTask);
         }
 
-        if (task.equalsIgnoreCase("EDIT")) {
+        if (words[0].equalsIgnoreCase("EDIT")) {
             edit(planner, task, numberOfTask);
         }
 
-        if (task.equalsIgnoreCase("DELETE")) {
+        if (words[0].equalsIgnoreCase("DELETE")) {
             delete(planner, numberOfTask);
         }
     }
 
     private static void list(ArrayList<String> planner) {
         if (!planner.isEmpty()) {
-            int countEmpty = 0;
+            System.out.println("Текущее состояние списка дел:");
             for (int i = 0; i < planner.size(); i++) {
-                if (planner.get(i).equals("---")) {
-                    countEmpty++;
-                }
-            }
-            if (!(countEmpty == planner.size())) {
-                System.out.println("Текущее состояние списка дел:");
-                for (int i = 0; i < planner.size(); i++) {
-                    System.out.println((i + 1) + " - " + planner.get(i));
-                }
-            } else {
-                System.out.println("Текущий список дел пуст");
+                System.out.println((i + 1) + " - " + planner.get(i));
             }
         } else {
             System.out.println("Текущий список дел пуст");
@@ -114,6 +100,8 @@ public class Task1 {
         if (numberOfTask - 1 > planner.size()) {
             System.out.println("Такого задания запланировано не было");
             return;
+        } else if (planner.get(numberOfTask).equals("---")) {
+            System.out.println("На этот период задания запланировано не было");
         } else {
             planner.remove(numberOfTask - 1);
             System.out.println("Задание " + numberOfTask + " успешно удалено");
