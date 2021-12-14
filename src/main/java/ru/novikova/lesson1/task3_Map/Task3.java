@@ -76,7 +76,7 @@ public class Task3 {
     }
 
     private static String formattedName(String newInput) {
-        return newInput.trim();
+        return newInput.trim().toUpperCase();
     }
 
     private static boolean checkName(String newInput) {
