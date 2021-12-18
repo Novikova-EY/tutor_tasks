@@ -1,4 +1,4 @@
-package ru.novikova.lesson1.task2_ArrayList;
+package ru.novikova.tutor.homework.lesson1.task2_ArrayList;
 
 import java.util.ArrayList;
 import java.util.Scanner;

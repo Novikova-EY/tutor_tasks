@@ -1,4 +1,4 @@
-package ru.novikova.lesson1.task3_Map;
+package ru.novikova.tutor.homework.lesson1.task3_Map;
 
 import java.util.*;
 import java.util.regex.Matcher;
