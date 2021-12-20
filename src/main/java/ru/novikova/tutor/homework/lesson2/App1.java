@@ -1,4 +1,4 @@
-package ru.novikova.tutor.homework.lesson2.task1;
+package ru.novikova.tutor.homework.lesson2;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -40,7 +40,6 @@ public class App1 {
         File fileOutput = new File("C:\\Users\\sledo\\Desktop\\tutor\\src\\main\\java\\ru\\novikova\\tutor\\homework\\lesson2\\task1\\output.txt");
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(fileOutput));
-            String temp = convertInput(map, output);
             bufferedWriter.write(convertInput(map, output));
             bufferedWriter.flush();
             bufferedWriter.close();
