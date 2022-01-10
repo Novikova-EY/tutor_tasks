@@ -1,8 +1,6 @@
 package ru.novikova.tutor.homework.lesson2;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +53,7 @@ public class App1 {
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < textOutput.length - 1; i++) {
-            if (textOutput[i] == -1 && textOutput[i + 1] == -1 ) {
+            if (textOutput[i] == -1 && textOutput[i + 1] == -1) {
                 if (!(sb.charAt(sb.length() - 1) == ' ')) {
                     sb.append(' ');
                 }

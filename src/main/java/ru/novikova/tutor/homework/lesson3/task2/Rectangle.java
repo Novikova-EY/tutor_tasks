@@ -1,6 +1,8 @@
 package ru.novikova.tutor.homework.lesson3.task2;
 
-public class Rectangle extends Shape implements Countable {
+public class Rectangle extends Shape {
+    int side;
+
     public Rectangle(String coordinates) {
         super(coordinates);
     }

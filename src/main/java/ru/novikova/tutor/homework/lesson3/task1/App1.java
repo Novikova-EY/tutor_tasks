@@ -1,7 +1,5 @@
 package ru.novikova.tutor.homework.lesson3.task1;
 
-import java.util.ArrayList;
-
 public class App1 {
     public static void main(String[] args) {
 

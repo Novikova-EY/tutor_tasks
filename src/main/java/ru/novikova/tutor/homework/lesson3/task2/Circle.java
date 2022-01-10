@@ -1,6 +1,8 @@
 package ru.novikova.tutor.homework.lesson3.task2;
 
-public class Circle extends Shape implements Countable {
+public class Circle extends Shape {
+    int radius;
+
     public Circle(String coordinates) {
         super(coordinates);
     }
