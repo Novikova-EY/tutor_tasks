@@ -1,0 +1,30 @@
+Task
+Create the following classes:
+Entry with fields:
+int id
+Product product
+int quantity
+
+Product
+String code
+String name
+double price
+List<String> categories
+
+CartService with method
+getCartEntries() - should return list of entries (at least 10)
+
+Get a collection of products in cart
+Get cart total price
+Сheck that no entry total does not exceed 1000
+Сheck that at least 1 entry quantity > 10
+Get entry with quantity > 3
+Get max and min product price in cart
+Sort entry by asc product price
+Sort entry by desc product name
+Get list all product names in cart
+ Get all entries with product category “Shoes”
+Get unique collection of all categories in cart
+Print all results in view:
+“1. Get a collection of products in cart:
+ results…

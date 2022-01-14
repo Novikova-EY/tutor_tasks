@@ -1,5 +1,7 @@
 package ru.novikova.tutor.classwork.lesson5.task1;
 
+import java.util.Objects;
+
 public class Number implements Comparable<Number>{
     private String first;
     private String numberOfCar;
@@ -59,13 +61,15 @@ public class Number implements Comparable<Number>{
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Number numberToCheck = (Number) obj;
-        if (this.first == numberToCheck.first &&
-                this.numberOfCar == numberToCheck.numberOfCar &&
-                this.second == numberToCheck.second &&
-                this.region == numberToCheck.region) {
-            return true;
-        } else return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Number number = (Number) o;
+        return first.equals(number.first) && numberOfCar.equals(number.numberOfCar) && second.equals(number.second) && region.equals(number.region);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, numberOfCar, second, region);
     }
 }

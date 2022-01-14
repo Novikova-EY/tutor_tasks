@@ -1,9 +1,6 @@
 package ru.novikova.tutor.classwork.lesson5.task1;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Generator {
@@ -78,44 +75,49 @@ public class Generator {
     }
 
     public static void simpleFind(Number numberToFind) {
-        calcTimeSimpleFindArrayList(numberToFind);
-        calcTimeSimpleFindHashSet(numberToFind);
-        calcTimeSimpleFindTreeSet(numberToFind);
+        ArrayList<Number> array = new ArrayList<Number>();
+        for (int i = 0; i < 1000; i++) {
+            array.add(arrayArrayList.get((int) (Math.random() * arrayArrayList.size())));
+        }
+        long start = System.currentTimeMillis();
+        for (Number n : array) {
+            calcTimeSimpleFindTreeSet(n);
+        }
+        long finish = System.currentTimeMillis() - start;
+        System.out.println("finish = " + finish);
+
+//        calcTimeSimpleFindHashSet(numberToFind);
+//        calcTimeSimpleFindTreeSet(numberToFind);
     }
 
     public static void calcTimeSimpleFindArrayList(Number numberToFind) {
-        long start = System.currentTimeMillis();
         for (Number n : arrayArrayList) {
             if (n.equals(numberToFind)) {
-                long finish = System.currentTimeMillis() - start;
-                System.out.println("ArrayList: номер найден, поиск занял " + finish + " мс");
-                break;
+                return;
             }
         }
-        long finish = System.currentTimeMillis() - start;
-        System.out.println("ArrayList: номер не найден, поиск занял " + finish + " мс");
+    }
+
+    public static void calcTimeBinaryFindArrayList(Number numberToFind) {
+        if (Collections.binarySearch(arrayArrayList, numberToFind) >= 0) {
+            return;
+        }
     }
 
     public static void calcTimeSimpleFindHashSet(Number numberToFind) {
-        long start = System.currentTimeMillis();
-        if (arrayHashSet.contains(numberToFind)) {
-            long finish = System.currentTimeMillis() - start;
-            System.out.println("HashSet: номер найден, поиск занял " + finish + " мс");
-            return;
+        for (Number n : arrayArrayList) {
+            if (n.equals(numberToFind)) {
+                return;
+            }
         }
-        long finish = System.currentTimeMillis() - start;
-        System.out.println("HashSet: номер не найден, поиск занял " + finish + " мс");
     }
 
     public static void calcTimeSimpleFindTreeSet(Number numberToFind) {
-        long start = System.currentTimeMillis();
-        if (arrayHashSet.contains(numberToFind)) {
-            long finish = System.currentTimeMillis() - start;
-            System.out.println("HashSet: номер найден, поиск занял " + finish + " мс");
-            return;
+        for (Number n : arrayArrayList) {
+            if (n.equals(numberToFind)) {
+                return;
+            }
         }
-        long finish = System.currentTimeMillis() - start;
-        System.out.println("TreeSet: номер не найден, поиск занял " + finish + " мс");
     }
 
 }
